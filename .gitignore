@@ -1,0 +1,5 @@
+bin/
+.settings/
+update-android-project-*.jar
+.project
+.classpath

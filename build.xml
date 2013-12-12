@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project name="update-android-project" default="build">
+  <loadfile property="version" srcFile="VERSION"/>
+  <property name="src.dir" value="src" />
+  <property name="out.dir" value="bin" />
+  <property name="classes.dir" value="${out.dir}/classes" />
+
+  <target name="-prepare">
+    <mkdir dir="${classes.dir}" />
+  </target>
+  
+  <target name="clean">
+    <delete dir="${out.dir}" />
+    <delete>
+      <fileset dir="." includes="update-android-project-*.jar" />
+    </delete>
+  </target>
+
+  <target name="build" depends="-prepare">
+    <javac srcdir="${src.dir}"
+           destdir="${classes.dir}">
+      <classpath>
+        <fileset dir="libs" includes="*.jar" />
+      </classpath>
+    </javac>
+
+    <jar destfile="update-android-project-${version}.jar">
+      <fileset dir="${classes.dir}" includes="**/*.class" />
+      <zipgroupfileset dir="libs" includes="commons-io-*"/>
+    </jar>
+  </target>
+</project>

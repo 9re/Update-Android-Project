@@ -39,6 +39,10 @@ public class AndroidProject {
         return mRootDir;
     }
     
+    public String target() {
+        return mProjectProperties.properties().get("target");
+    }
+    
     public boolean isLibrary() {
         return mIsLibrary;
     }

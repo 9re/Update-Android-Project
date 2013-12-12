@@ -25,7 +25,15 @@ public class Main {
         Runtime runtime = Runtime.getRuntime();
         try {
             Process process = runtime.exec(
-                "android update " + getCommand(androidProject.isLibrary()) + " -p .",
+                new String[] {
+                    "android",
+                    "update",
+                    getCommand(androidProject.isLibrary()),
+                    "-p",
+                    ".",
+                    "-t",
+                    androidProject.target()
+                },
                 null,
                 androidProject.root());
             String errorMessage = IOUtils.toString(process.getErrorStream());
@@ -46,7 +54,7 @@ public class Main {
     private static String getCommand(boolean library) {
         return library ? "lib-project" : "project";
     }
-
+    
     private static String indent(int count) {
         String out = "";
         while (count-- > 0) {

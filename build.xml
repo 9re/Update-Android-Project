@@ -16,7 +16,7 @@
     </delete>
   </target>
 
-  <target name="build" depends="-prepare">
+  <target name="build" depends="clean, -prepare">
     <javac srcdir="${src.dir}"
            destdir="${classes.dir}">
       <classpath>
